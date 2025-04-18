@@ -6,15 +6,20 @@ const jwt = require('jsonwebtoken')
 const tokenAuth = require('../middleware/TokenAuth')
 const multer = require("multer")
 
+const path = require("path")
+
+
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, 'images')
     },
     filename: (req,file, cb) => {
         console.log("uploaded file =>", file)
+        cb(null, `user-${file.originalname}`)
     }
 })
 
+const upload = multer({ storage: storage })
 //============Routers to create=====================
 
 // Login Funtion ========================================
@@ -92,48 +97,45 @@ router.post('/register', async (req, res) => {
 
 // get user info by id ==================================
 
-router.get("/info", tokenAuth, async (req, res, next) => {
-    const id = req.userId
+// router.get("/info", tokenAuth, async (req, res, next) => {
+//     const id = req.userId
 
-    const allInfo = await prisma.user.findUnique({ where: { id }})
-    const refinedInfo = {
-        id: allInfo.id,
-        email: allInfo.email,
-        username: allInfo.username,
-        avatar: allInfo.avatar,
-        isAdmin: allInfo.isAdmin,
-        fName: allInfo.fName,
-        lName: allInfo.lName,
-        createdAt: allInfo.createdAt
-        //posts?
-        //communities?
-        //comments?
-    }
+//     const allInfo = await prisma.user.findUnique({ where: { id }})
+//     const refinedInfo = {
+//         id: allInfo.id,
+//         email: allInfo.email,
+//         username: allInfo.username,
+//         avatar: allInfo.avatar,
+//         isAdmin: allInfo.isAdmin,
+//         fName: allInfo.fName,
+//         lName: allInfo.lName,
+//         createdAt: allInfo.createdAt
+//         //posts?
+//         //communities?
+//         //comments?
+//     }
 
-    res.status(200).json({
-        successMessage: "here ya go silly",
-        user: refinedInfo
-    })
-})
+//     res.status(200).json({
+//         successMessage: "here ya go silly",
+//         user: refinedInfo
+//     })
+// })
+// )
+// }
 
-// get all users==========ADMIN ONLY=====================
+//     if(!isAdmin){
+//         return res.status(401).json({
+//             error: "No Admin Privilege"
+//         })
+//     }
 
-router.get("/all", tokenAuth, async (req, res) => {
-    const isAdmin = req.isAdmin
+//     const allUsers = await prisma.user.findMany()
 
-    if(!isAdmin){
-        return res.status(401).json({
-            error: "No Admin Privilege"
-        })
-    }
-
-    const allUsers = await prisma.user.findMany()
-
-    res.status(200).json({
-        successMessage: "all active users",
-        users: allUsers
-    })
-})
+//     res.status(200).json({
+//         successMessage: "all active users",
+//         users: allUsers
+//     })
+// })
 
 // delete a user=========ADMIN OR EXISTIING USER========
 
@@ -246,8 +248,9 @@ router.patch("/upgrade/:id", tokenAuth,  async (req, res) => {
 
 // post avatar ====================================
 
-router.post("/avatar", /* tokenAuth, */ (req, res) => {
-
+router.post("/avatar", upload.single("avatar"), /* tokenAuth, */ (req, res) => {
+    console.log(" req obj => ", req.body)
+    res.json("files accepted")
 })
 
 

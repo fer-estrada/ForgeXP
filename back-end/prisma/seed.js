@@ -15,7 +15,7 @@ await prisma.user.deleteMany();
     const hashedPassword = await bcrypt.hash("password123", 10);
 
 
-    const imgPath = '../src/images/'
+    const imgPath = 'images/'
     // Admin user
     await prisma.user.create({
       data: {

@@ -1,12 +1,13 @@
-const cors = require("cors");
 
 const express = require('express')
+const cors = require("cors");
 const app = express()
 // const prisma = require("prisma")
 
 app.use(cors());
 app.use(express.json())
 app.use(require('morgan')('dev'))
+app.use('/images', express.static('images'))
 
 //=============user routes===================
 
