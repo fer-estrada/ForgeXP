@@ -4,6 +4,16 @@ const prisma = require('../../prisma')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const tokenAuth = require('../middleware/TokenAuth')
+const multer = require("multer")
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'images')
+    },
+    filename: (req,file, cb) => {
+        console.log("uploaded file =>", file)
+    }
+})
 
 //============Routers to create=====================
 
@@ -234,6 +244,11 @@ router.patch("/upgrade/:id", tokenAuth,  async (req, res) => {
     }
 })
 
+// post avatar ====================================
+
+router.post("/avatar", /* tokenAuth, */ (req, res) => {
+
+})
 
 
 module.exports = router
