@@ -195,7 +195,7 @@ router.put("/update/:id", tokenAuth, async (req, res) => {
     }
 })
 
-// admin update ========================================
+// admin upgrade ========================================
 
 router.patch("/upgrade/:id", tokenAuth,  async (req, res) => {
     const id = +req.params.id;

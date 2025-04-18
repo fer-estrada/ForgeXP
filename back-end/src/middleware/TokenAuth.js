@@ -21,6 +21,7 @@ const tokenAuth = (req, res, next) => {
                 error: err
             })
         }
+        console.log("our decoded token => ", decoded)
         req.userId = decoded.id
         req.isAdmin = decoded.isAdmin
         next()
