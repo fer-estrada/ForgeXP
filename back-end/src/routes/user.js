@@ -250,11 +250,12 @@ router.patch("/upgrade/:id", tokenAuth,  async (req, res) => {
 })
 
 // change avatar ====================================
-router.put("/:id/avatar", /* tokenAuth, */ upload.single('avatar'), async (req, res, next) => {
+router.patch("/:id/avatar", /* tokenAuth, */ upload.single('avatar'), async (req, res, next) => {
     try {
         const id =+ req.params.id
 
-        if (!req.file) return res.status(400).json({ message: 'No file uploaded'})
+        if (!req.file) return res.status(404).json({ 
+            error: 'No file uploaded'})
 
         const newAvatar = `/images/${req.file.filename}`
 
@@ -273,17 +274,13 @@ router.delete('/:id/avatar', /* tokenAuth */ async (req, res, next) => {
         const id =+ req.params.id
 
         const user = await prisma.user.findUnique({ where: {id} })
-        if (!user) return res.status(404).json({ error: 'User not found' })
+        if (!user) return res.status(404).json({ 
+            error: 'User not found' })
 
         if (user.avatar !== defaultAvatar) {
             const findAvatar = path.join(__dirname, '..', user.avatar)
 
-        try {
-            await fs.promises.unlink(findAvatar);
-        } catch (unlinkError) {
-            return res.status(500).json({ message: 'Unable to reset avatar' })
-        }
-        }
+        
 
         await prisma.user.update({ where: {id}, data: {avatar: defaultAvatar} })
         res.status(200).json({ message: 'Reset avatar successfully!' })
