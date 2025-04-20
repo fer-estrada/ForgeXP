@@ -11,7 +11,7 @@ router.get('/:userId/favorites', async (req, res, next) => {
 
         if (favorites.length === 0) return res.json({ message: 'User has no favorited posts'})
 
-        res.sendStatus(200).json(response)
+        res.status(200).json(response)
     } catch (error) {
         next(error)
     }
@@ -28,7 +28,7 @@ router.post('/:userId/favorites', async (req, res, next) => {
 
         const response = await prisma.favorites.create({ data: userId, postId })
 
-        res.sendStatus(201).json(response)
+        res.status(201).json(response)
     } catch (error) {
         next(error)
     }
@@ -45,7 +45,7 @@ router.delete('/:userId/favorites/:id', async (req, res, next) => {
 
         const response = await prisma.favorites.delete({ where: {userId, id} })
 
-        res.sendStatus(200).json({ message: 'Post succesfully un-favorited!' })
+        res.status(200).json({ message: 'Post succesfully un-favorited!' })
     } catch (error) {
         next(error)
     }
