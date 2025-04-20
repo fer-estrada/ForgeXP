@@ -250,7 +250,7 @@ router.patch("/upgrade/:id", tokenAuth,  async (req, res) => {
 })
 
 // change avatar ====================================
-router.put("/:id/avatar", /* tokenAuth, */ async (req, res, next) => {
+router.put("/:id/avatar", /* tokenAuth, */ upload.single('avatar'), async (req, res, next) => {
     try {
         const id =+ req.params.id
 
