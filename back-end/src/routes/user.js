@@ -253,7 +253,7 @@ router.patch("/upgrade/:id", tokenAuth,  async (req, res) => {
 router.patch("/:id/avatar", /* tokenAuth, */ upload.single('avatar'), async (req, res, next) => {
     try {
         const id =+ req.params.id
-
+        
         if (!req.file) return res.status(404).json({ 
             error: 'No file uploaded'})
 
@@ -268,25 +268,25 @@ router.patch("/:id/avatar", /* tokenAuth, */ upload.single('avatar'), async (req
     }
 })
 
-// reset to default
-router.delete('/:id/avatar', /* tokenAuth */ async (req, res, next) => {
-    try {
-        const id =+ req.params.id
+// // reset to default
+// router.delete('/:id/avatar', /* tokenAuth */ async (req, res, next) => {
+//     try {
+//         const id =+ req.params.id
 
-        const user = await prisma.user.findUnique({ where: {id} })
-        if (!user) return res.status(404).json({ 
-            error: 'User not found' })
+//         const user = await prisma.user.findUnique({ where: {id} })
+//         if (!user) return res.status(404).json({ 
+//             error: 'User not found' })
 
-        if (user.avatar !== defaultAvatar) {
-            const findAvatar = path.join(__dirname, '..', user.avatar)
+//         if (user.avatar !== defaultAvatar) {
+//             const findAvatar = path.join(__dirname, '..', user.avatar)
 
         
 
-        await prisma.user.update({ where: {id}, data: {avatar: defaultAvatar} })
-        res.status(200).json({ message: 'Reset avatar successfully!' })
-    } catch (error) {
-        next(error)
-    }
-})
+//         await prisma.user.update({ where: {id}, data: {avatar: defaultAvatar} })
+//         res.status(200).json({ message: 'Reset avatar successfully!' })
+//     } catch (error) {
+//         next(error)
+//     }
+// })
 
 module.exports = router

@@ -18,7 +18,7 @@ async function uploadHandle(e) {
 
     try {
         const response = await fetch("http://localhost:3000/user/avatar", {
-            method: "POST",
+            method: "PUT",
             body: formData
         })
 
