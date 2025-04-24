@@ -131,15 +131,6 @@ export default function SingleUser() {
     }
   };
 
-  // const handleUserClick = (userId) => {
-  //   console.log("Navigating to user:", userId);
-  //   setShowFollowers(false); // Close the modal first
-  //   setShowFollowing(false); // Optional: close both just in case
-  //   setTimeout(() => {
-  //     navigate(`/user/${userId}`);
-  //   }, 100); // Give the modal time to disappear
-  // };
-
   const handleUserClick = (userId) => {
     setShowFollowers(false);
     setShowFollowing(false);
