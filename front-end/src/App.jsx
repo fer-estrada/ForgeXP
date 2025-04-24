@@ -32,6 +32,7 @@ function App() {
         <Route path="createpost" element={<CreatePost />} />
         <Route path="uploads" element={<Uploads />} />
         <Route path="user/:id" element={<SingleUser />} />
+        <Route path="single/:id" element={<SinglePost />} />
       </Route>
     </Routes>
   );
