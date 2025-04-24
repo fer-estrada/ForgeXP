@@ -12,6 +12,7 @@ import Community from "./components/Community/Community";
 import Uploads from "./components/Account/Uploads";
 import CreatePost from "./components//Community/CreatePost";
 import SingleUser from "./components/SingleUser/SingleUser";
+import SinglePost from "./components/Community/SinglePost"
 
 function App() {
   const [token, setToken] = useState(null);
