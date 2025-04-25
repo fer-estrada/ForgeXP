@@ -44,7 +44,7 @@ export default function NavBar() {
         {/* Nav links (desktop not mobile) */}
         <ul className="hidden lg:flex gap-6 text-lg">
           {/*!!!MOVE Into Community!!!*/}
-          
+
           <li>
             <Link
               to="/community"
@@ -83,12 +83,6 @@ export default function NavBar() {
             </>
           ) : (
             <>
-              <li
-                onClick={clickHandle}
-                className="hover:text-orange-400 drop-shadow-[0_0_10px_rgba(255,255,255,0.5)] cursor-pointer"
-              >
-                Logout
-              </li>
               <li>
                 <Link
                   to="/account"
@@ -99,6 +93,12 @@ export default function NavBar() {
               </li>
             </>
           )}
+          <li
+            onClick={clickHandle}
+            className="hover:text-orange-400 drop-shadow-[0_0_10px_rgba(255,255,255,0.5)] cursor-pointer"
+          >
+            Logout
+          </li>
         </ul>
       </div>
 
