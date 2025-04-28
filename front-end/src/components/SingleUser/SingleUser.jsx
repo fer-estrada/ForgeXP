@@ -21,16 +21,11 @@ export default function SingleUser() {
   const [newAvatar, setNewAvatar] = useState(null);
   const navigate = useNavigate();
   const { id } = useParams();
-
-  const [currentUserId, setCurrentUserId] = useState(null);
   const [userPosts, setUserPosts] = useState(null)
   console.log('fer is a bad person', userPosts)
-  const [followCounts, setFollowCounts] = useState({
-    followers: 0,
-    following: 0,
-  });
   const [showOptions, setShowOptions] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false); //This isnt being used any more since moving the 3 dot button to Followers pop up. (Leaving here to use for something else)
+  const address = 'http://localhost:3000/'
 
   const tabComponents = {
     details: <SingleUserDetails />,
@@ -40,7 +35,7 @@ export default function SingleUser() {
 
   useEffect(() => {
     async function fetchSelf() {
-      const response = await fetch(`http://localhost:3000/user/info`, {
+      const response = await fetch(`${address}user/info`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       const result = await response.json();
@@ -51,7 +46,7 @@ export default function SingleUser() {
 
   useEffect(() => {
     async function fetchUser() {
-      const response = await fetch(`http://localhost:3000/user/${id}`);
+      const response = await fetch(`${address}user/${id}`);
       const data = await response.json();
       setUser(data.user);
     }
@@ -68,7 +63,7 @@ export default function SingleUser() {
   //For displaying a count number **WHAT I HAD TO ADD TO THE BACKEND FOR
   const fetchFollowCounts = async () => {
     try {
-      const res = await fetch(`http://localhost:3000/user/follow/counts/${id}`);
+      const res = await fetch(`${address}user/follow/counts/${id}`);
       const data = await res.json();
       setFollowCounts({
         followers: data.followers,
@@ -84,7 +79,7 @@ export default function SingleUser() {
   const openFollowersModal = async () => {
     setShowFollowers(true);
     try {
-      const res = await fetch(`http://localhost:3000/user/followed/${id}`);
+      const res = await fetch(`${address}user/followed/${id}`);
       const data = await res.json();
       setFollowerList(data.followers);
     } catch (err) {
@@ -97,7 +92,7 @@ export default function SingleUser() {
   const openFollowingModal = async () => {
     setShowFollowing(true);
     try {
-      const res = await fetch(`http://localhost:3000/user/following/${id}`);
+      const res = await fetch(`${address}user/following/${id}`);
       const data = await res.json();
       setFollowingList(data.following);
     } catch (err) {
@@ -109,7 +104,7 @@ export default function SingleUser() {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:3000/user/isfollowing/${id}`,
+        `${address}user/isfollowing/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -146,6 +141,17 @@ export default function SingleUser() {
     }, 100);
   };
 
+  async function deleteHandle() {
+    const response = await fetch(`${address}user/delete/${user.id}`, {
+      method: 'DELETE',
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+    })
+    const result = response.json()
+    console.log('user gone? => ', result)
+  }
+
+
+
   if (!user) return <div className="text-white p-4">Loading user...</div>;
 
   return (
@@ -171,7 +177,7 @@ export default function SingleUser() {
 
         {/* Admin action buttons */}
         <div className="flex flex-wrap gap-2 mt-6 justify-center">
-          <button className="px-4 py-2 border border-gray-500 text-red-400 rounded-md text-sm bg-transparent">
+          <button onClick={deleteHandle} className="px-4 py-2 border border-gray-500 text-red-400 rounded-md text-sm bg-transparent">
           Delete User
           </button>
           <button className="px-4 py-2 border border-gray-500 text-blue-400 rounded-md text-sm bg-transparent">

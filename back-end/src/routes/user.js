@@ -210,6 +210,7 @@ router.delete("/delete/:id", tokenAuth, async (req, res) => {
       error: "No Existing User To Delete",
     });
   }
+  console.log(userExists)
   if (isAdmin || userId === id) {
     const user = await prisma.user.delete({ where: { id } });
     return res.status(200).json({
