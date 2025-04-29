@@ -1,3 +1,6 @@
+import { address } from "../../../address"; //update address here
+console.log('address =>', address);
+
 export default function UserPostCard({ post }) {
   let contentPath = post.content;
 
@@ -12,7 +15,7 @@ export default function UserPostCard({ post }) {
       <video
         className="h-[180px] w-[320px] rounded-lg"
         controls
-        src={`http://localhost:3000${contentPath}`}
+        src={`${address}${contentPath}`} //update address here
       ></video>
     );
   }
@@ -28,7 +31,7 @@ export default function UserPostCard({ post }) {
       {post.PostType === "image" && (
         <img
           className="h-[180px] w-[320px] rounded-lg object-cover"
-          src={`http://localhost:3000${contentPath}`}
+          src={`${address}${contentPath}`} //update address here
           alt="Post content"
         />
       )}

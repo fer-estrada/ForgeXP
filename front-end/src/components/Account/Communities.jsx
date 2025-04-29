@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import UserCommCard from "./UserCommCard";
 import { useNavigate } from "react-router-dom";
+import { address } from "../../../address"; //update address here
 
 export default function Communities({ user }) {
   const [userCommunities, setUserCommunities] = useState(null);
   const navigate = useNavigate();
   console.log("comm useState => ", userCommunities);
+  console.log('address => ',address);
 
   useEffect(() => {
     setUserCommunities(user.communities);

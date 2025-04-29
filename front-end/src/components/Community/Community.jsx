@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import SearchUser from "../SearchUser";
 import CommCard from "../Community/CommCard";
+import { address } from "../../../address"; //update address here
+console.log('address =>', address);
 
 function Community() {
   const navigate = useNavigate();
@@ -10,7 +12,7 @@ function Community() {
 
   useEffect(() => {
     async function fetchPostList() {
-      const response = await fetch("http://localhost:3000/post/all");
+      const response = await fetch("${address}/post/all"); //update address here
       const result = await response.json();
       setPostList(result.post);
     }

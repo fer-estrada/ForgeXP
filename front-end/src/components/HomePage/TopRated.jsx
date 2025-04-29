@@ -1,5 +1,7 @@
 import mockData from "../../data/mockData";
 import { Link } from "react-router-dom";
+import { address } from "../../../address"; //update address here
+console.log('address =>', address);   
 
 export default function TopRated() {
   return (

@@ -6,6 +6,8 @@ import SingleUserUploads from "./SingleUserUploads";
 import ReturnButton from "../ReturnButton";
 import { toggleFollow } from "../../API/index";
 import SingleUserAdmin from "../Admin/SingleUserAdmin";
+import { address } from "../../../address"; //update address here
+console.log('address =>', address); 
 
 export default function SingleUser() {
   const [activeTab, setActiveTab] = useState("details");
@@ -38,7 +40,7 @@ export default function SingleUser() {
 
   useEffect(() => {
     async function fetchSelf() {
-      const response = await fetch(`http://localhost:3000/user/info`, {
+      const response = await fetch(`${address}/user/info`, { //update address here
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       const result = await response.json();
@@ -50,7 +52,7 @@ export default function SingleUser() {
 
   useEffect(() => {
     async function fetchUser() {
-      const response = await fetch(`http://localhost:3000/user/${id}`);
+      const response = await fetch(`${address}/user/${id}`); //update address here
       const data = await response.json();
       setUser(data.user);
     }
@@ -68,7 +70,7 @@ export default function SingleUser() {
   //For displaying a count number **WHAT I HAD TO ADD TO THE BACKEND FOR
   const fetchFollowCounts = async () => {
     try {
-      const res = await fetch(`http://localhost:3000/user/follow/counts/${id}`);
+      const res = await fetch(`${address}/user/follow/counts/${id}`); //update address here
       const data = await res.json();
       setFollowCounts({
         followers: data.followers,
@@ -84,7 +86,7 @@ export default function SingleUser() {
   const openFollowersModal = async () => {
     setShowFollowers(true);
     try {
-      const res = await fetch(`http://localhost:3000/user/followed/${id}`);
+      const res = await fetch(`${address}/user/followed/${id}`); //update address here
       const data = await res.json();
       setFollowerList(data.followers);
     } catch (err) {
@@ -97,7 +99,7 @@ export default function SingleUser() {
   const openFollowingModal = async () => {
     setShowFollowing(true);
     try {
-      const res = await fetch(`http://localhost:3000/user/following/${id}`);
+      const res = await fetch(`${address}/user/following/${id}`);  //update address here
       const data = await res.json();
       setFollowingList(data.following);
     } catch (err) {
@@ -109,7 +111,7 @@ export default function SingleUser() {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:3000/user/isfollowing/${id}`,
+        `${address}/user/isfollowing/${id}`, 
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -159,7 +161,7 @@ export default function SingleUser() {
             src={
               newAvatar
                 ? URL.createObjectURL(newAvatar)
-                : `http://localhost:3000${user.avatar}`
+                : `${address}${user.avatar}` //update addrees here
             }
             alt="User avatar"
             className="w-32 h-32 rounded-full border-4 border-orange-500 object-cover shadow-lg"

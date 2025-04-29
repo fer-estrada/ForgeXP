@@ -1,4 +1,6 @@
 import { Trash } from "lucide-react";
+import { address } from "../../../address"; //update address here
+console.log('address =>', address);
 
 export default function SinglePost({ post, goBack }) {
   let contentPath = post.content;
@@ -15,7 +17,7 @@ export default function SinglePost({ post, goBack }) {
     );
     if (!confirmDelete) return;
 
-    fetch(`http://localhost:3000/user/post/${postId}`, {
+    fetch(`${address}/user/post/${postId}`, { //update address here
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -55,7 +57,7 @@ export default function SinglePost({ post, goBack }) {
       <video
         className="w-full h-[400px] rounded-lg"
         controls
-        src={`http://localhost:3000${contentPath}`}
+        src={`${address}${contentPath}`} //update address here
       ></video>
     );
   }
@@ -77,7 +79,7 @@ export default function SinglePost({ post, goBack }) {
       {post.PostType === "image" && (
         <img
           className="rounded-lg object-cover max-h-[400px] w-full"
-          src={`http://localhost:3000${contentPath}`}
+          src={`${address}${contentPath}`} //update address here
           alt="Post content"
         />
       )}

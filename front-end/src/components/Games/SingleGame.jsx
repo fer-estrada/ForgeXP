@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import GamePostCard from "./GamePostCard";
+import { address } from "../../../address"; // update address here 
+console.log('address =>', address);
 
 export default function SingleGame() {
   const { id } = useParams();
@@ -12,21 +14,20 @@ export default function SingleGame() {
   const [favorited, setFavorited] = useState(false);
   const [liked, setLiked] = useState(false);
   const navigate = useNavigate();
-  const address = "http://localhost:3000/";
 
   useEffect(() => {
     async function fetchGame() {
-      const response = await fetch(`${address}games/${id}`);
+      const response = await fetch(`${address}/games/${id}`);// update address here 
       const result = await response.json();
       setGame(result.game);
     }
     async function fetchPost() {
-      const response = await fetch(`${address}post/game/${id}`);
+      const response = await fetch(`${address}/post/game/${id}`); // update address here 
       const result = await response.json();
       setPosts(result.posts);
     }
     async function fetchUser() {
-      const response = await fetch(`${address}user/info`, {
+      const response = await fetch(`${address}/user/info`, { // update address here 
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       const result = await response.json();
@@ -45,7 +46,7 @@ export default function SingleGame() {
   }, [userComm, game]);
 
   async function subHandle() {
-    const response = await fetch(`${address}user/join-game/${game.id}`, {
+    const response = await fetch(`${address}/user/join-game/${game.id}`, { // update address here 
       method: "POST",
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
     });
@@ -70,7 +71,7 @@ export default function SingleGame() {
           {/* Cover Image */}
           <div className="flex-shrink-0">
             <img
-              src={`http://localhost:3000${game.coverImage}`}
+              src={`${address}${game.coverImage}`} // update address here 
               alt="Game Cover"
               className="w-48 h-64 object-cover rounded-lg shadow-md transition-transform duration-300 hover:scale-110"
             />

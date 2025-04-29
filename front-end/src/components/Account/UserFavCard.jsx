@@ -1,3 +1,6 @@
+import { address } from "../../../address"; //update address here
+console.log('address =>', address);
+
 export default function UserFavCard({ post }) {
   const contentPath = post.content;
 
@@ -12,7 +15,7 @@ export default function UserFavCard({ post }) {
         {post.PostType === "image" && (
           <img
             className="h-[180px] w-[320px] rounded-lg object-cover mx-auto"
-            src={`http://localhost:3000${contentPath}`}
+            src={`${address}${contentPath}`} //update address here
             alt="Post content"
           />
         )}
@@ -21,7 +24,7 @@ export default function UserFavCard({ post }) {
           <video
             className="h-[180px] w-[320px] rounded-lg mx-auto"
             controls
-            src={`http://localhost:3000${contentPath}`}
+            src={`${address}${contentPath}`} //update address here
           />
         )}
       </div>

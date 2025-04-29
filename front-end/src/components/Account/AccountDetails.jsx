@@ -1,3 +1,7 @@
+import { address } from "../../../address"; //update address here
+
+console.log('address =>', address);
+
 export default function AccountDetails({ user }) {
   return (
     <div className="text-white px-4 py-10 max-w-4xl mx-auto">

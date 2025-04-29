@@ -1,3 +1,6 @@
+import { address } from "../../../address"; //update address here
+console.log('address =>', address); 
+
 export default function SingleUserDetails({ user }) {
   if (!user) return <div className="text-shadow-orange-400">Loading...</div>;
 

@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { X } from "lucide-react";
 import RemoveAccount from './RemoveAccount';
-
+import { address } from "../../../address"; //update address here
+console.log('address =>', address);
 
 export default function SettingsModal({ isOpen, onClose, user, onSave, navigate }) {
   const [username, setUsername] = useState(user.username || "");

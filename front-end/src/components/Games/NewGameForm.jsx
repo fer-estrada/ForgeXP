@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { X } from "lucide-react";
+import { address } from "../../../address"; //update address here
+console.log('address =>', address);
 
 export default function NewGameForm({ isOpen, onClose }) {
   const [title, setTitle] = useState("");
@@ -31,7 +33,7 @@ export default function NewGameForm({ isOpen, onClose }) {
     formData.append("coverImage", file);
 
     try {
-      const response = await fetch(`http://localhost:3000/games/create`, {
+      const response = await fetch(`${address}/games/create`, { //update address here
         method: "POST",
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         body: formData,

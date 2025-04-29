@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { address } from "../../../address"; //update address here
+console.log('address =>', address);
 
 function CreatePost() {
   const [title, setTitle] = useState("");
@@ -26,7 +28,7 @@ function CreatePost() {
     formData.append("PostType", PostType);
     formData.append("content", content);
 
-    const response = await fetch("http://localhost:3000/post/create", {
+    const response = await fetch(`${address}/post/create`, { //update address here
       method: "POST",
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       body: formData,

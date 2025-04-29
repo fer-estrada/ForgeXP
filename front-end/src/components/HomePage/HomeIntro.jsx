@@ -1,4 +1,6 @@
 import React from "react";
+import { address } from "../../../address"; //update address here
+console.log('address =>', address);     
 
 export default function HomeIntro() {
   return (

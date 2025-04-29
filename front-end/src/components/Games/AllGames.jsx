@@ -5,20 +5,21 @@ import { useNavigate } from "react-router-dom";
 import NewGameForm from "./NewGameForm";
 import ReturnButton from "../ReturnButton";
 import AddGameButton from "./AddGameButton";
+import { address } from "../../../address"; //update address here
+console.log('address =>', address);
 
 export default function AllGames() {
   const [gameList, setGameList] = useState([]);
   const [isAdmin, setIsAdmin] = useState(false);
   const navigate = useNavigate();
   const [showGameForm, setShowGameForm] = useState(false);
-  const address = "http://localhost:3000/";
 
   console.log("gameList useState =>", gameList);
   console.log("isAdmin useState =>", isAdmin);
 
   useEffect(() => {
     async function fetchIsAdmin() {
-      const response = await fetch(`${address}user/info`, {
+      const response = await fetch(`${address}/user/info`, { //update address here
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       const result = await response.json();
@@ -29,7 +30,7 @@ export default function AllGames() {
 
   useEffect(() => {
     async function fetchGameList() {
-      const response = await fetch(`${address}games/all`);
+      const response = await fetch(`${address}/games/all`); //update address here
       const result = await response.json();
       setGameList(result.games);
     }

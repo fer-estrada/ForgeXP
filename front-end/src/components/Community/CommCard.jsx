@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
+import { address } from "../../../address"; //update address here
+console.log('address =>', address); 
 
 const CommunityCard = ({ post, setRefreshToggle, refreshToggle }) => {
   const [postLiked, setPostLiked] = useState(false);
   const [postFav, setPostFav] = useState(false);
   const [favToggle, setFavToggle] = useState(false);
-  const address = "http://localhost:3000/";
 
   useEffect(() => {
     fetchHasLiked(post.id);
@@ -15,7 +16,7 @@ const CommunityCard = ({ post, setRefreshToggle, refreshToggle }) => {
   }, [favToggle]);
 
   async function likeHandle(postId) {
-    await fetch(`${address}post/${postId}/like`, {
+    await fetch(`${address}/post/${postId}/like`, { //add slash
       method: "POST",
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
     });

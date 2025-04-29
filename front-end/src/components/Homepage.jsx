@@ -3,6 +3,8 @@ import "keen-slider/keen-slider.min.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import mockData from "../data/mockData";
+import { address } from "../../../address"; //update address here
+console.log('address =>', address);   
 
 export default function Homepage() {
   const [sliderRef, slider] = useKeenSlider({

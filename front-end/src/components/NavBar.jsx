@@ -2,6 +2,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import SearchUser from "./SearchUser";
+import { address } from "../../../address"; //update address here
+console.log('address =>', address);   
 
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);

@@ -1,4 +1,6 @@
 import UserPostCard from "../Account/UserPostCard";
+import { address } from "../../../address"; //update address here
+console.log('address =>', address); 
 
 export default function SingleUserUploads({ userPosts }) {
     if (!userPosts) {

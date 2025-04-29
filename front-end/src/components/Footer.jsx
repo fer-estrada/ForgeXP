@@ -1,3 +1,6 @@
+import { address } from "../../../address"; //update address here
+console.log('address =>', address);   
+
 export default function Footer({ setShowClip }) {
   return (
     <footer className="relative z-10 w-full bg-gray-900 text-white py-2 px-6 border-t border-gray-700">

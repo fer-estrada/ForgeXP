@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import NavBar from "./NavBar";
 import Footer from "./Footer";
+import { address } from "../../../address"; //update address here
+console.log('address =>', address);   
 
 export default function Layout() {
   const [showClip, setShowClip] = useState(false);

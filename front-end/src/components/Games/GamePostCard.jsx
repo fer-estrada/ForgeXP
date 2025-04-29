@@ -1,17 +1,18 @@
 
 import { useState, useEffect } from "react";
+import { address } from "../../../address"; //update address here
+console.log('address =>', address);
 
 function GamePostCard({ post }) {
   const [postLiked, setPostLiked] = useState(false);
   const [refreshToggle, setRefreshToggle] = useState(false);
-  const address = "http://localhost:3000/";
 
   useEffect(() => {
     fetchHasLiked(post.id);
   }, [refreshToggle]);
 
   async function likeHandle(postId) {
-    const response = await fetch(`${address}post/${postId}/like`, {
+    const response = await fetch(`${address}/post/${postId}/like`, { //update address here
       method: "POST",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -21,7 +22,7 @@ function GamePostCard({ post }) {
   }
 
   async function fetchHasLiked(postId) {
-    const response = await fetch(`${address}post/hasliked/${postId}`, {
+    const response = await fetch(`${address}/post/hasliked/${postId}`, { //update address here
       method: "POST",
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
     });

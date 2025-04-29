@@ -1,3 +1,6 @@
+import { address } from "../../../address"; //update address here
+console.log('address =>', address);
+
 export default function RemoveAccount({ user, navigate }) {
   async function deleteself() {
     const confirmDelete = window.confirm(
@@ -7,7 +10,7 @@ export default function RemoveAccount({ user, navigate }) {
 
     try {
       const response = await fetch(
-        `http://localhost:3000/user/delete/${user.id}`,
+        `${address}/user/delete/${user.id}`, //update address here
         {
           method: "DELETE",
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },

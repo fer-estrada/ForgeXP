@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import UserPostCard from "./UserPostCard";
 import SinglePost from "../Account/MySinglePost";
 import YouTubeCarousel from "./YouTubeCarousel";
+import { address } from "../../../address"; //update address here
+console.log('address =>', address);
 
 export default function Uploads({ user }) {
   const [userPosts, setUserPosts] = useState([]);

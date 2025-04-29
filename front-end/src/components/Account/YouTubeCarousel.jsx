@@ -2,6 +2,8 @@ import "keen-slider/keen-slider.min.css";
 import { useKeenSlider } from "keen-slider/react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useState } from "react";
+import { address } from "../../../address"; //update address here
+console.log('address =>', address);
 
 export default function YouTubeCarousel({ youtubePosts, setSelectedPost }) {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -26,7 +28,7 @@ export default function YouTubeCarousel({ youtubePosts, setSelectedPost }) {
       currentPost.community.heroImage
     ) {
       setBackgroundUrl(
-        `http://localhost:3000${currentPost.community.heroImage}`
+        `${address}${currentPost.community.heroImage}` //update address here
       );
     }
   }, [currentSlide, youtubePosts]);

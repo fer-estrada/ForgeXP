@@ -2,6 +2,8 @@ import HomeIntro from "./HomeIntro";
 import Carousel from "./Carousel";
 import HomePagePosts from "./HomepagePosts";
 import HomePageUserSearch from "./HomepageUserSerach";
+import { address } from "../../../address"; //update address here
+console.log('address =>', address);     
 
 export default function Homepage() {
   return (

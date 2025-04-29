@@ -1,3 +1,6 @@
+import { address } from "../../../address"; //update address here
+console.log('address =>', address);
+
 const SingleCommunity = () => {
     const gamecommunity = {
         name: 'community',
