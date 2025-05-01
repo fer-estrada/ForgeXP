@@ -100,7 +100,7 @@ export default function SingleGame() {
   }, [userComm, game]);
 
   async function subHandle() {
-    const response = await fetch(`${address}user/join-game/${game.id}`, {
+    const response = await fetch(`${address}/user/join-game/${game.id}`, {
       method: "POST",
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
     });

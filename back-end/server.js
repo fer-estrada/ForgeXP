@@ -5,7 +5,7 @@ const express = require("express");
 const app = express();
 // const prisma = require("prisma")
 
-app.use(cors());
+app.use(cors('*'));
 app.use(express.json());
 app.use(require("morgan")("dev"));
 
